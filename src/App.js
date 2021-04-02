@@ -62,7 +62,7 @@ class App extends Component {
     this.setState({ filter: ev.currentTarget.value });
   };
 
-  // отрисовывает контакту по значению из фильтра
+  // отрисовывает контакты по значению из фильтра
   renderFilteredContacts = () => {
     const { contacts, filter } = this.state;
     const normFilter = filter.toLowerCase();
