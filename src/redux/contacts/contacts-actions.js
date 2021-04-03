@@ -1,7 +1,20 @@
 import { v4 as id } from "uuid";
 import { createAction } from "@reduxjs/toolkit";
-import types from "./contacts-types";
+// import types from "./contacts-types";
 id();
+
+//  ****after
+const addContact = createAction("contacts/add", ({ name, number }) => ({
+  payload: {
+    id: id(),
+    name,
+    number,
+  },
+}));
+
+const deleteContact = createAction("contacts/delete");
+
+const changeFilter = createAction("contacts/cangeFilter");
 
 //  ****before
 // const addContact = ({ name, number }) => ({
@@ -22,18 +35,5 @@ id();
 //   type: types.CHANGE_FILTER,
 //   payload: value,
 // });
-
-//  ****after
-const addContact = createAction(types.ADD, ({ name, number }) => ({
-  payload: {
-    id: id(),
-    name,
-    number,
-  },
-}));
-
-const deleteContact = createAction(types.DELETE);
-
-const changeFilter = createAction(types.CHANGE_FILTER);
 
 export default { addContact, deleteContact, changeFilter };

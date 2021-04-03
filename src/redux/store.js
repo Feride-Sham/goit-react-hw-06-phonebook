@@ -4,12 +4,6 @@ import logger from "redux-logger";
 // import { composeWithDevTools } from "redux-devtools-extension";
 import contactsReducer from "./contacts/contacts-reducer";
 
-//  ****before
-// const rootReducer = combineReducers({
-//   contacts: contactsReducer,
-// });
-// const store = createStore(rootReducer, composeWithDevTools());
-
 //  ****after
 const middleware = [...getDefaultMiddleware(), logger];
 const store = configureStore({
@@ -19,4 +13,11 @@ const store = configureStore({
   middleware,
   devTools: process.env.NODE_ENV === "development",
 });
+
+//  ****before
+// const rootReducer = combineReducers({
+//   contacts: contactsReducer,
+// });
+// const store = createStore(rootReducer, composeWithDevTools());
+
 export default store;
