@@ -19,11 +19,25 @@ class ContactForm extends Component {
   // отправляет данные введеные в форме
   handleSubmit = (ev) => {
     ev.preventDefault();
-    const { number } = this.state;
+    const { number, name } = this.state;
+    const { contacts } = this.props;
+
     if (Number.isNaN(+number)) {
-      alert("Sorry! Phone number must contain only numbers ");
+      alert("Извините, номер телефона может содержать только цифры ");
       return;
     }
+
+    const uniqueContact = contacts.find((item) => item.name === name);
+    if (uniqueContact) {
+      alert(`${name} уже есть в списке ваших контактов`);
+      return;
+    }
+
+    if (name === "" || number === "") {
+      alert("Необходимо заполнить имя и телефон контакта");
+      return;
+    }
+
     this.props.onSubmit(this.state);
     this.resetForm();
   };
@@ -66,8 +80,12 @@ class ContactForm extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  contacts: state.contacts.items,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: (contact) => dispatch(contactsActions.addContact(contact)),
 });
 
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
