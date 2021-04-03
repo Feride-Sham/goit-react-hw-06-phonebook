@@ -29,11 +29,6 @@ class App extends Component {
   // запрещает сохранить уже существующий контакт
   formSubmitHandler = ({ name, number }) => {
     const { contacts } = this.state;
-    // const contact = {
-    //   id: id(),
-    //   name,
-    //   number,
-    // };
 
     if (
       contacts.find(
@@ -43,49 +38,13 @@ class App extends Component {
       alert(`${name} уже есть в списке ваших контактов`);
       return;
     }
-    // this.setState((prevState) => ({
-    //   contacts: [contact, ...prevState.contacts],
-    // }));
-  };
-
-  // удаляет контакты
-  // deleteContact = (contactId) => {
-  //   this.setState((prevState) => ({
-  //     contacts: prevState.contacts.filter(
-  //       (contact) => contact.id !== contactId
-  //     ),
-  //   }));
-  // };
-
-  // получает введенное значение из фильтра
-  toChangeFilter = (ev) => {
-    this.setState({ filter: ev.currentTarget.value });
-  };
-
-  // отрисовывает контакты по значению из фильтра
-  renderFilteredContacts = () => {
-    const { contacts, filter } = this.state;
-    const normFilter = filter.toLowerCase();
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(normFilter)
-    );
   };
 
   render() {
-    const { filter } = this.state;
-    const {
-      formSubmitHandler,
-      toChangeFilter,
-      deleteContact,
-      renderFilteredContacts,
-    } = this;
-    const filteredContacts = renderFilteredContacts();
-
     return (
       <div className="App">
         <h1>Phonebook</h1>
         <ContactForm />
-
         <h2>Contacts</h2>
         <Filter />
         <ContactList />
