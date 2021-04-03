@@ -37,11 +37,10 @@ const filterContacts = (contacts, filter) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  const { items, filter } = state.contacts;
-  const filteredContacts = filterContacts(items, filter);
+const mapStateToProps = ({ contacts }) => {
+  const { items, filter } = contacts;
   return {
-    contactList: filteredContacts,
+    contactList: filterContacts(items, filter),
   };
 };
 
