@@ -11,29 +11,29 @@ class App extends Component {
     filter: "",
   };
 
-  componentDidMount() {
-    const contacts = localStorage.getItem("contacts");
-    const parsedContacts = JSON.parse(contacts);
-    if (parsedContacts) {
-      this.setState({ contacts: parsedContacts });
-    }
-  }
+  // componentDidMount() {
+  //   const contacts = localStorage.getItem("contacts");
+  //   const parsedContacts = JSON.parse(contacts);
+  //   if (parsedContacts) {
+  //     this.setState({ contacts: parsedContacts });
+  //   }
+  // }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.contacts !== prevState.contacts) {
+  //     localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+  //   }
+  // }
 
   // перезаписывает массив контактов и
   // запрещает сохранить уже существующий контакт
   formSubmitHandler = ({ name, number }) => {
     const { contacts } = this.state;
-    const contact = {
-      id: id(),
-      name,
-      number,
-    };
+    // const contact = {
+    //   id: id(),
+    //   name,
+    //   number,
+    // };
 
     if (
       contacts.find(
@@ -43,19 +43,19 @@ class App extends Component {
       alert(`${name} уже есть в списке ваших контактов`);
       return;
     }
-    this.setState((prevState) => ({
-      contacts: [contact, ...prevState.contacts],
-    }));
+    // this.setState((prevState) => ({
+    //   contacts: [contact, ...prevState.contacts],
+    // }));
   };
 
   // удаляет контакты
-  deleteContact = (contactId) => {
-    this.setState((prevState) => ({
-      contacts: prevState.contacts.filter(
-        (contact) => contact.id !== contactId
-      ),
-    }));
-  };
+  // deleteContact = (contactId) => {
+  //   this.setState((prevState) => ({
+  //     contacts: prevState.contacts.filter(
+  //       (contact) => contact.id !== contactId
+  //     ),
+  //   }));
+  // };
 
   // получает введенное значение из фильтра
   toChangeFilter = (ev) => {
