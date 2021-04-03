@@ -1,7 +1,8 @@
 import { v4 as id } from "uuid";
 import types from "./contacts-types";
+id();
 
-const addContact = (name, number) => ({
+const addContact = ({ name, number }) => ({
   type: types.ADD,
   payload: {
     id: id(),

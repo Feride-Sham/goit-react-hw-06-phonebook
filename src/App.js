@@ -84,14 +84,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={formSubmitHandler} />
+        <ContactForm />
 
         <h2>Contacts</h2>
-        <Filter filterValue={filter} onToFilter={toChangeFilter} />
-        <ContactList
-          contactList={filteredContacts}
-          onDeleteContact={deleteContact}
-        />
+        <Filter />
+        <ContactList />
       </div>
     );
   }

@@ -29,12 +29,12 @@ ContactList.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-// const mapStateToProps = (state) => ({
-//   contactList: state.contacts.items,
-// });
+const mapStateToProps = (state) => ({
+  contactList: state.contacts.items,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onDeleteContact: (id) => dispatch(contactsActions.deleteContact(id)),
 });
 
-export default connect(null, mapDispatchToProps)(ContactList);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
