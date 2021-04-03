@@ -37,12 +37,9 @@ const filterContacts = (contacts, filter) => {
   );
 };
 
-const mapStateToProps = ({ contacts }) => {
-  const { items, filter } = contacts;
-  return {
-    contactList: filterContacts(items, filter),
-  };
-};
+const mapStateToProps = ({ contacts: { items, filter } }) => ({
+  contactList: filterContacts(items, filter),
+});
 
 const mapDispatchToProps = (dispatch) => ({
   onDeleteContact: (id) => dispatch(contactsActions.deleteContact(id)),
