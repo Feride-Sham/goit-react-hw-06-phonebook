@@ -19,22 +19,14 @@ class ContactForm extends Component {
   // отправляет данные введеные в форме
   handleSubmit = (ev) => {
     ev.preventDefault();
-    const { number, name } = this.state;
+    const { name } = this.state;
     const { contacts } = this.props;
 
-    if (Number.isNaN(+number)) {
-      alert("Извините, номер телефона может содержать только цифры ");
-      return;
-    }
-
-    const uniqueContact = contacts.find((item) => item.name === name);
+    const uniqueContact = contacts.find(
+      (item) => item.name.toLowerCase() === name.toLowerCase()
+    );
     if (uniqueContact) {
       alert(`${name} уже есть в списке ваших контактов`);
-      return;
-    }
-
-    if (name === "" || number === "") {
-      alert("Необходимо заполнить имя и телефон контакта");
       return;
     }
 
@@ -61,6 +53,9 @@ class ContactForm extends Component {
             name="name"
             value={name}
             onChange={this.handleInputChange}
+            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+            required
           />
         </label>
         <label className={s.label}>
@@ -70,6 +65,9 @@ class ContactForm extends Component {
             name="number"
             value={number}
             onChange={this.handleInputChange}
+            pattern="(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})"
+            title="Номер телефона должен состоять из 11-12 цифр и может содержать цифры, пробелы, тире, пузатые скобки и может начинаться с +"
+            required
           />
         </label>
         <button className={s.btnSubmit} type="submit">
